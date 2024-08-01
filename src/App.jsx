@@ -1,8 +1,4 @@
-import {
-    RouterProvider,
-    createBrowserRouter,
-    createHashRouter,
-} from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 import Home from './ui/Home'
 import Error from './ui/Error'
@@ -16,7 +12,7 @@ import AppLayout from './ui/AppLayout'
 import { action as updateOrderAction } from './features/order/UpdateOrder'
 import FavoriteCart from './features/cart/FavoriteCart'
 
-const router = createHashRouter([
+const router = createBrowserRouter([
     {
         element: <AppLayout />,
         errorElement: <Error />,
