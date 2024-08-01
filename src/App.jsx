@@ -10,6 +10,7 @@ import CreateOrder, {
 import Order, { loader as orderLoader } from './features/order/Order'
 import AppLayout from './ui/AppLayout'
 import { action as updateOrderAction } from './features/order/UpdateOrder'
+import FavoriteCart from './features/cart/FavoriteCart'
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
                 errorElement: <Error />,
             },
             { path: '/cart', element: <Cart /> },
+            { path: '/favorite', element: <FavoriteCart /> },
             {
                 path: '/order/new',
                 element: <CreateOrder />,

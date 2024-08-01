@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     cart: [],
+    favoriteCart: [],
     // cart: [
     //     {
     //         pizzaId: 12,
@@ -20,8 +21,16 @@ const cartSlice = createSlice({
         addItem(state, action) {
             state.cart.push(action.payload)
         },
+        addFavItem(state, action) {
+            state.favoriteCart.push(action.payload)
+        },
         deleteItem(state, action) {
             state.cart = state.cart.filter(
+                (item) => item.pizzaId !== action.payload
+            )
+        },
+        deleteFavItem(state, action) {
+            state.favoriteCart = state.favoriteCart.filter(
                 (item) => item.pizzaId !== action.payload
             )
         },
@@ -52,7 +61,9 @@ const cartSlice = createSlice({
 
 export const {
     addItem,
+    addFavItem,
     deleteItem,
+    deleteFavItem,
     increaseItemQuantity,
     decreaseItemQuantity,
     clearCart,
@@ -62,6 +73,8 @@ export default cartSlice.reducer
 
 export const getCart = (state) => state.cart.cart
 
+export const getFavoriteCart = (state) => state.cart.favoriteCart
+
 export const getTotalQuantity = (state) =>
     state.cart.cart.reduce((sum, item) => sum + item.quantity, 0)
 
@@ -70,3 +83,6 @@ export const getTotalPrice = (state) =>
 
 export const getCurrentQuantityById = (id) => (state) =>
     state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0
+
+export const getCurrentFavQuantityById = (id) => (state) =>
+    state.cart.favoriteCart.find((item) => item.pizzaId === id)
